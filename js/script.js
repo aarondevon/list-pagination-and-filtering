@@ -16,10 +16,10 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
-// 
+// Get needed elements
 const studentList = document.querySelector('.student-list');
 const page = document.querySelector('.page');
-
+// Set max number of students on each page
 const maxItemsPerPage = 10;
 
 
