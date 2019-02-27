@@ -1,8 +1,20 @@
 // Get needed elements
-const studentList = document.querySelector('.student-list');
+const studentList = document.querySelector('.student-list').getElementsByTagName('li');
 const page = document.querySelector('.page');
 // Set max number of students on each page
 const maxItemsPerPage = 10;
+
+// Show Page
+const showPage = (list, page) => {
+	const studentsOnPage = [];
+	for (let i = 0; i < list.length; i++)
+		if (i >= (page * maxItemsPerPage - maxItemsPerPage) && i < (page * maxItemsPerPage) ) {
+			studentsOnPage.push(list[i]); 
+		}
+		return studentsOnPage;
+}
+
+
 
 // Append page links
 const appendPageLinks = (list) => {
