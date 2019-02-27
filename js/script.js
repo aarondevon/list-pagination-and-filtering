@@ -46,7 +46,3 @@ const appendPageLinks = (list) => {
 	console.log(a);
 	
 };
-
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
