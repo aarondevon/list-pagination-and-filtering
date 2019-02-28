@@ -33,6 +33,14 @@ const showPage = (list, page) => {
 		return studentsOnPage;
 }
 
+// hideStudents
+const hideStudents = (list)  =>{
+	// Hide All Students
+	for (let i = 0; i < list.length; i ++) {
+		list[i].style.display = 'none';
+	}
+}
+
 // Append page links
 const appendPageLinks = (list) => {
 	let pageNumber;		
@@ -45,13 +53,10 @@ const appendPageLinks = (list) => {
 		li.appendChild(a);
     ul.appendChild(li);
 	}
-	// Hide All Students
-	for (let i = 0; i < studentList.length; i ++) {
-		studentList[i].style.display = 'none';
-	}
+	
 	// Show students for page 1	
-	for (let i = 0; i < showPage(studentList, 1).length; i ++) {
-		showPage(studentList, 1)[i].style.display = '';
+	for (let i = 0; i < showPage(list, 1).length; i ++) {
+		showPage(list, 1)[i].style.display = '';
 	}
 	// Add Active class to first page
 	liList[0].firstElementChild.className = 'active';
@@ -83,5 +88,6 @@ const appendPageLinks = (list) => {
 	}
 };
 
+hideStudents(studentList);
 appendPageLinks(studentList);
 
