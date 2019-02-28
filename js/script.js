@@ -41,6 +41,14 @@ const hideStudents = (list)  =>{
 	}
 }
 
+// Show page one
+const displayPageOne = (list) => {
+	// Show students for page 1	
+	for (let i = 0; i < showPage(list, 1).length; i ++) {
+		showPage(list, 1)[i].style.display = '';
+	}
+}
+
 // Append page links
 const appendPageLinks = (list) => {
 	let pageNumber;		
@@ -52,11 +60,6 @@ const appendPageLinks = (list) => {
 		a.textContent = i + 1;
 		li.appendChild(a);
     ul.appendChild(li);
-	}
-	
-	// Show students for page 1	
-	for (let i = 0; i < showPage(list, 1).length; i ++) {
-		showPage(list, 1)[i].style.display = '';
 	}
 	// Add Active class to first page
 	liList[0].firstElementChild.className = 'active';
@@ -89,5 +92,6 @@ const appendPageLinks = (list) => {
 };
 
 hideStudents(studentList);
+displayPageOne(studentList);
 appendPageLinks(studentList);
 
