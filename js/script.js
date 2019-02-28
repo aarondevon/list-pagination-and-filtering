@@ -2,7 +2,7 @@
 const divPages = document.createElement('div');
 
 // Create ul element
-let ul = document.createElement('ul');
+const ul = document.createElement('ul');
 
 // Add class names
 divPages.className = 'pagination';
@@ -61,6 +61,7 @@ const appendPageLinks = (list) => {
 		li.appendChild(a);
     ul.appendChild(li);
 	}
+
 	// Add Active class to first page
 	liList[0].firstElementChild.className = 'active';
 	// Add event listener to to page links
@@ -79,12 +80,12 @@ const appendPageLinks = (list) => {
 				// Add active class to target page link
 				event.target.className = 'active';
 				// Hide student list again
-				for (let i = 0; i < studentList.length; i ++) {
-					studentList[i].style.display = 'none';
+				for (let i = 0; i < list.length; i ++) {
+					list[i].style.display = 'none';
 				}
 				// Display students for correct page link clicked
-				for (let i = 0; i < showPage(studentList, pageNumber).length; i ++) {
-					showPage(studentList, pageNumber)[i].style.display = '';
+				for (let i = 0; i < showPage(list, pageNumber).length; i ++) {
+					showPage(list, pageNumber)[i].style.display = '';
 				}
 			}
 		})
