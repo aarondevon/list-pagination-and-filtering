@@ -3,6 +3,7 @@ const divPages = document.createElement('div');
 
 // Create ul element
 const ul = document.createElement('ul');
+
 // Create HTML Elements for search
 const studentSearch = document.createElement('div');
 const searchInput = document.createElement('input');
@@ -11,6 +12,7 @@ const searchButton = document.createElement('button');
 // Add class names
 divPages.className = 'pagination';
 ul.className = 'pages';
+studentSearch.className = 'student-search';
 
 // Get needed elements
 const studentList = document.querySelector('.student-list').getElementsByTagName('li');
