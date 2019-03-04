@@ -24,6 +24,14 @@ const pageHeader = document.querySelector('.page-header');
 divPages.appendChild(ul);
 page.appendChild(divPages);
 
+// Add place holder
+studentSearch.innerHTML = '<input placeholder="Search for students..."></input>';
+// Add search button text
+searchButton.textContent = 'Search';
+// Append Search Elements
+studentSearch.appendChild(searchButton);
+pageHeader.appendChild(studentSearch);
+
 // Set max number of students on each page
 const maxItemsPerPage = 10;
 
