@@ -36,7 +36,8 @@ pageHeader.appendChild(studentSearch);
 const maxItemsPerPage = 10;
 
 // Get number of pages needed
-const numOfPages = studentList.length / 10;
+const numOfPages = (list) => 
+{ return list.length / 10;};
 
 // Return student array for page
 const showPage = (list, page) => {
@@ -65,10 +66,10 @@ const displayPageOne = (list) => {
 }
 
 // Append page links
-const appendPageLinks = (list) => {
+const appendPageLinks = (studentList) => {
 	let pageNumber;		
 	// Create buttons
-	for ( let i = 0; i < numOfPages; i++) {
+	for ( let i = 0; i < numOfPages(studentList); i++) {
 		let li = document.createElement('li');
 		let a = document.createElement('a');
 		a.setAttribute('href', "#");
@@ -80,14 +81,14 @@ const appendPageLinks = (list) => {
 	// Add Active class to first page
 	liList[0].firstElementChild.className = 'active';
 	// Add event listener to to page links
-	for ( let i = 0; i < numOfPages; i++) {
+	for ( let i = 0; i < numOfPages(studentList); i++) {
 		liList[i].addEventListener('click', (event) => {
 		
 			if (event.target.tagName === 'A') {
 				// Get page number
 				pageNumber = parseInt(event.target.textContent);
 				// Remove active class on other page links when page link is clicked
-				for (let i = 0; i < numOfPages; i++) {
+				for (let i = 0; i < numOfPages(studentList); i++) {
 					if (liList[i].firstElementChild.classList.contains('active')) {
 						liList[i].firstElementChild.classList.remove('active');
 					}
@@ -95,17 +96,42 @@ const appendPageLinks = (list) => {
 				// Add active class to target page link
 				event.target.className = 'active';
 				// Hide student list again
-				for (let i = 0; i < list.length; i ++) {
-					list[i].style.display = 'none';
+				for (let i = 0; i < studentList.length; i ++) {
+					studentList[i].style.display = 'none';
 				}
 				// Display students for correct page link clicked
-				for (let i = 0; i < showPage(list, pageNumber).length; i ++) {
-					showPage(list, pageNumber)[i].style.display = '';
+				for (let i = 0; i < showPage(studentList, pageNumber).length; i ++) {
+					showPage(studentList, pageNumber)[i].style.display = '';
 				}
 			}
-		})
+		})	
 	}
 };
+
+let studentNames = document.querySelector('.student-list').getElementsByTagName('h3');
+let studentEmails = document.querySelector('.student-list').getElementsByClassName('email');
+
+const searchStudentList = (StudentList) => {
+	
+};
+
+searchButton.addEventListener('click', (e) => {
+	hideStudents(studentList);
+	let name = document.querySelector('.student-search').firstElementChild.value;
+	const searchArray =[];
+	for (let i = 0; i < studentNames.length; i++) {
+		if (studentNames[i].textContent.toString().includes(name) || studentEmails[i].textContent.toString().includes(name)) {
+			searchArray.push(studentList[i]);
+			studentList[i].style.display = '';
+			
+			console.log(studentList[i]);
+		}
+		
+		
+	}
+	appendPageLinks(searchArray);
+	
+})
 
 hideStudents(studentList);
 displayPageOne(studentList);
