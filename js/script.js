@@ -2,7 +2,7 @@
 const divPages = document.createElement('div');
 
 // Create ul element
-const ul = document.createElement('ul');
+const ulPage = document.createElement('ul');
 
 // Create HTML Elements for search
 const studentSearch = document.createElement('div');
@@ -11,17 +11,18 @@ const searchButton = document.createElement('button');
 
 // Add class names
 divPages.className = 'pagination';
-ul.className = 'pages';
+ulPage.className = 'pages';
 studentSearch.className = 'student-search';
 
 // Get needed elements
 const studentList = document.querySelector('.student-list').getElementsByTagName('li');
 const page = document.querySelector('.page');
-const liList = ul.getElementsByTagName('li');
+// Page links
+const liList = ulPage.getElementsByTagName('li');
 const pageHeader = document.querySelector('.page-header');
 
 // Append ul and divPages
-divPages.appendChild(ul);
+divPages.appendChild(ulPage);
 page.appendChild(divPages);
 
 // Add place holder
@@ -65,6 +66,14 @@ const displayPageOne = (list) => {
 	}
 }
 
+// Remove page links
+const removePageLinks = (pageLinks) => {
+	let liListLength = liList.length;
+	for (let i = 0; i < liListLength; i++) {
+		liList[0].remove();
+	}
+}
+
 // Append page links
 const appendPageLinks = (studentList) => {
 	let pageNumber;		
@@ -75,11 +84,12 @@ const appendPageLinks = (studentList) => {
 		a.setAttribute('href', "#");
 		a.textContent = i + 1;
 		li.appendChild(a);
-    ul.appendChild(li);
+    ulPage.appendChild(li);
 	}
 
 	// Add Active class to first page
 	liList[0].firstElementChild.className = 'active';
+	
 	// Add event listener to to page links
 	for ( let i = 0; i < numOfPages(studentList); i++) {
 		liList[i].addEventListener('click', (event) => {
@@ -96,9 +106,8 @@ const appendPageLinks = (studentList) => {
 				// Add active class to target page link
 				event.target.className = 'active';
 				// Hide student list again
-				for (let i = 0; i < studentList.length; i ++) {
-					studentList[i].style.display = 'none';
-				}
+				hideStudents(studentList);
+			
 				// Display students for correct page link clicked
 				for (let i = 0; i < showPage(studentList, pageNumber).length; i ++) {
 					showPage(studentList, pageNumber)[i].style.display = '';
@@ -106,6 +115,7 @@ const appendPageLinks = (studentList) => {
 			}
 		})	
 	}
+	return liList;
 };
 
 let studentNames = document.querySelector('.student-list').getElementsByTagName('h3');
@@ -117,6 +127,7 @@ const searchStudentList = (StudentList) => {
 
 searchButton.addEventListener('click', (e) => {
 	hideStudents(studentList);
+	removePageLinks(liList);
 	let name = document.querySelector('.student-search').firstElementChild.value;
 	const searchArray =[];
 	for (let i = 0; i < studentNames.length; i++) {
