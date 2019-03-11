@@ -8,6 +8,7 @@ const ulPage = document.createElement('ul');
 const studentSearch = document.createElement('div');
 const searchInput = document.createElement('input');
 const searchButton = document.createElement('button');
+const clearButton = document.createElement('button');
 
 // Add class names
 divPages.className = 'pagination';
@@ -29,8 +30,10 @@ page.appendChild(divPages);
 studentSearch.innerHTML = '<input placeholder="Search for students..."></input>';
 // Add search button text
 searchButton.textContent = 'Search';
+clearButton.textContent = 'Clear';
 // Append Search Elements
 studentSearch.appendChild(searchButton);
+studentSearch.appendChild(clearButton);
 pageHeader.appendChild(studentSearch);
 
 // Set max number of students on each page
@@ -133,17 +136,18 @@ searchButton.addEventListener('click', (e) => {
 	for (let i = 0; i < studentNames.length; i++) {
 		if (studentNames[i].textContent.toString().includes(name) || studentEmails[i].textContent.toString().includes(name)) {
 			searchArray.push(studentList[i]);
-			// studentList[i].style.display = '';
-			
-			console.log(studentList[i]);
-		}
-		
-		
+		}	
 	}
 	displayPageOne(searchArray);
 	appendPageLinks(searchArray);
-	
-	
+})
+
+clearButton.addEventListener('click', (e) => {
+	document.querySelector('.student-search').firstElementChild.value = '';
+	hideStudents(studentList);
+	removePageLinks(liList);
+	displayPageOne(studentList);
+	appendPageLinks(studentList);
 })
 
 hideStudents(studentList);
