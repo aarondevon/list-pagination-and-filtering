@@ -168,6 +168,7 @@ studentSearch.addEventListener('keyup', (e) => {
 	if (searchArray.length === 0) {
 		document.querySelector('h2').innerHTML = 'NO RESULTS';
 	} else {
+		document.querySelector('h2').innerHTML = 'STUDENTS';
 		displayPageOne(searchArray);
 		appendPageLinks(searchArray);
 	}
