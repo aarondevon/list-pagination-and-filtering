@@ -124,10 +124,6 @@ const appendPageLinks = (studentList) => {
 let studentNames = document.querySelector('.student-list').getElementsByTagName('h3');
 let studentEmails = document.querySelector('.student-list').getElementsByClassName('email');
 
-const searchStudentList = (StudentList) => {
-	
-};
-
 searchButton.addEventListener('click', (e) => {
 	hideStudents(studentList);
 	removePageLinks(liList);
