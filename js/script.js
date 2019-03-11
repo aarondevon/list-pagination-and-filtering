@@ -133,14 +133,16 @@ searchButton.addEventListener('click', (e) => {
 	for (let i = 0; i < studentNames.length; i++) {
 		if (studentNames[i].textContent.toString().includes(name) || studentEmails[i].textContent.toString().includes(name)) {
 			searchArray.push(studentList[i]);
-			studentList[i].style.display = '';
+			// studentList[i].style.display = '';
 			
 			console.log(studentList[i]);
 		}
 		
 		
 	}
+	displayPageOne(searchArray);
 	appendPageLinks(searchArray);
+	
 	
 })
 
