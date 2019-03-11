@@ -121,9 +121,11 @@ const appendPageLinks = (studentList) => {
 	return liList;
 };
 
+// Store student name and email
 let studentNames = document.querySelector('.student-list').getElementsByTagName('h3');
 let studentEmails = document.querySelector('.student-list').getElementsByClassName('email');
 
+// Search and display results
 searchButton.addEventListener('click', (e) => {
 	hideStudents(studentList);
 	removePageLinks(liList);
@@ -142,6 +144,7 @@ searchButton.addEventListener('click', (e) => {
 	}
 })
 
+// Clear search bar and show original list
 clearButton.addEventListener('click', (e) => {
 	document.querySelector('h2').innerHTML = 'STUDENTS';
 	document.querySelector('.student-search').firstElementChild.value = '';
@@ -151,6 +154,7 @@ clearButton.addEventListener('click', (e) => {
 	appendPageLinks(studentList);
 })
 
+// display pagination and first page students
 hideStudents(studentList);
 displayPageOne(studentList);
 appendPageLinks(studentList);
