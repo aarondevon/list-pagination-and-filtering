@@ -134,11 +134,16 @@ searchButton.addEventListener('click', (e) => {
 			searchArray.push(studentList[i]);
 		}	
 	}
-	displayPageOne(searchArray);
+	if (searchArray.length === 0) {
+		document.querySelector('h2').innerHTML = 'NO RESULTS';
+	} else {
+		displayPageOne(searchArray);
 	appendPageLinks(searchArray);
+	}
 })
 
 clearButton.addEventListener('click', (e) => {
+	document.querySelector('h2').innerHTML = 'STUDENTS';
 	document.querySelector('.student-search').firstElementChild.value = '';
 	hideStudents(studentList);
 	removePageLinks(liList);
