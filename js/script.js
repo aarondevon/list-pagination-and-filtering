@@ -154,6 +154,25 @@ clearButton.addEventListener('click', (e) => {
 	appendPageLinks(studentList);
 })
 
+// Display search in real time
+studentSearch.addEventListener('keyup', (e) => {
+	hideStudents(studentList);
+	removePageLinks(liList);
+	let name = document.querySelector('.student-search').firstElementChild.value;
+	const searchArray =[];
+	for (let i = 0; i < studentNames.length; i++) {
+		if (studentNames[i].textContent.toString().includes(name) || studentEmails[i].textContent.toString().includes(name)) {
+			searchArray.push(studentList[i]);
+		}	
+	}
+	if (searchArray.length === 0) {
+		document.querySelector('h2').innerHTML = 'NO RESULTS';
+	} else {
+		displayPageOne(searchArray);
+		appendPageLinks(searchArray);
+	}
+})
+
 // display pagination and first page students
 hideStudents(studentList);
 displayPageOne(studentList);
