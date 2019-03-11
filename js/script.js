@@ -95,11 +95,11 @@ const appendPageLinks = (studentList) => {
 	
 	// Add event listener to to page links
 	for ( let i = 0; i < numOfPages(studentList); i++) {
-		liList[i].addEventListener('click', (event) => {
+		liList[i].addEventListener('click', (e) => {
 		
 			if (event.target.tagName === 'A') {
 				// Get page number
-				pageNumber = parseInt(event.target.textContent);
+				pageNumber = parseInt(e.target.textContent);
 				// Remove active class on other page links when page link is clicked
 				for (let i = 0; i < numOfPages(studentList); i++) {
 					if (liList[i].firstElementChild.classList.contains('active')) {
@@ -138,7 +138,7 @@ searchButton.addEventListener('click', (e) => {
 		document.querySelector('h2').innerHTML = 'NO RESULTS';
 	} else {
 		displayPageOne(searchArray);
-	appendPageLinks(searchArray);
+		appendPageLinks(searchArray);
 	}
 })
 
